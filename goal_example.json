@@ -1,0 +1,40 @@
+{
+  "goal": "Navigate from source to destination while regulating energy consumption",
+  "grid_size": [4, 4],
+  "required_node_types": [
+    {
+      "planning": "navigator",
+      "controlling": "controller",
+      "causal": "causal",
+      "problem_story": { "context": "top-level navigation planner" },
+      "onto": ["navigation", "path", "energy"],
+      "json_target": { "reached_destination": true },
+      "algo": { "type": "merge", "data": { "status": "navigating" } },
+      "run": true
+    },
+    {
+      "planning": "planner",
+      "controlling": "regulator",
+      "causal": "predictive",
+      "problem_story": { "context": "energy regulation" },
+      "onto": ["energy", "battery", "threshold"],
+      "json_target": { "energy_ok": true },
+      "algo": { "type": "merge", "data": { "energy_regulated": true } },
+      "run": true
+    },
+    {
+      "planning": "scheduler",
+      "controlling": "monitor",
+      "causal": "reactive",
+      "problem_story": { "context": "obstacle monitoring" },
+      "onto": ["obstacle", "sensor", "avoidance"],
+      "json_target": { "path_clear": true },
+      "algo": { "type": "passthrough" },
+      "run": true
+    }
+  ],
+  "constraints": {
+    "max_energy": 100,
+    "max_nodes": 8
+  }
+}

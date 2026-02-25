@@ -1,0 +1,24 @@
+
+set up a landscape of nodes in staggered fashion, like the black squares on a chessboard
+each node has a JSON1 and a JSON2
+a node uses an algorithm (algo) to process JSON1 into JSON2
+each node also uses processes following POJAR, see below
+each node has is characterized by orthogonal types: planning type, a controlling type and a causal type
+for instance a navigator node = planning type + controlling type + causal type
+the navigation node is a node that is used in many situations, but there are also other nodes
+information goes down and up through the node landscape
+
+a node uses two loops to interact with other nodes:
+Loop1:Belief->Measure
+Loop2:Influence->Measure
+
+P O J A R items:
+ProblemStory = JSON
+Onto = List[String]
+Json-target = JSON
+Algo = python function
+Run = boolean
+
+i want to be able to specify a goal for the total machine 
+and then the program should assemble the necessary nodes to achieve this goal
+When you run the program, always use the POJAR items for processing each node
